@@ -25,38 +25,52 @@ export default function Participantes() {
 
   return (
     <div className="min-vh-100 py-4">
-      <div className="container">
-        <div className="d-flex justify-content-between align-items-center mb-4">
-          <div>
-            <h2 className="fw-bold text-dark mb-2">
-              Participantes Registrados
-            </h2>
-          </div>
-          <Link
-            className="btn btn-primary px-3"
-            to="/registro"
-            style={{ borderRadius: "8px" }}
-          >
-            <i className="bi bi-person-plus me-2"></i>
-            Nuevo Registro
-          </Link>
+      <div className="container" style={{ maxWidth: "1200px" }}>
+        <div className="text-center mb-5">
+          <h2 className="fw-bold text-dark mb-3">Participantes Registrados</h2>
+          <p className="text-muted">
+            {filtrados.length} de {lista.length} participantes encontrados
+          </p>
         </div>
 
-        <div className="card border-0 shadow-sm mb-4 bg-white">
-          <div className="card-body p-3">
-            <div className="input-group">
-              <span className="input-group-text bg-light border-0">
-                <i className="bi bi-search text-muted"></i>
-              </span>
-              <input
-                type="text"
-                className="form-control border-0 bg-light"
-                placeholder="Buscar participante por nombre o apellido..."
-                value={search}
-                onChange={handleSearchChange}
-                style={{ borderRadius: "8px" }}
-              />
+        <div className="row justify-content-between align-items-center mb-4">
+          <div className="col-md-8">
+            <div className="card border-0 shadow-sm">
+              <div className="card-body p-3">
+                <div className="input-group">
+                  <span className="input-group-text bg-white border-0">
+                    <i className="bi bi-search text-muted"></i>
+                  </span>
+                  <input
+                    type="text"
+                    className="form-control border-0"
+                    placeholder="Buscar participante por nombre o apellido..."
+                    value={search}
+                    onChange={handleSearchChange}
+                    style={{
+                      borderRadius: "8px",
+                      fontSize: "0.9rem",
+                    }}
+                  />
+                </div>
+              </div>
             </div>
+          </div>
+          <div className="col-md-4 text-md-end mt-3 mt-md-0">
+            <Link
+              className="btn py-2 px-3 fw-bold border-0 shadow"
+              to="/registro"
+              style={{
+                background: "linear-gradient(135deg, #2c3e50 0%, #34495e 100%)",
+                borderBottom: "3px solid rgba(255, 255, 255, 0.1)",
+                color: "white",
+                borderRadius: "8px",
+                fontSize: "0.9rem",
+              }}
+            >
+              <i className="bi bi-person-plus me-2"></i>
+              Nuevo Registro
+            </Link>
           </div>
         </div>
 
@@ -69,7 +83,7 @@ export default function Participantes() {
                   style={{
                     borderRadius: "12px",
                     background: "white",
-                    boxShadow: "0 2px 8px rgba(0,0,0,0.08)",
+                    boxShadow: "0 2px 12px rgba(0,0,0,0.08)",
                     cursor: "pointer",
                     transition: "all 0.3s ease",
                     border: "1px solid rgba(0,0,0,0.05)",
@@ -77,18 +91,22 @@ export default function Participantes() {
                   onMouseEnter={(e) => {
                     e.currentTarget.style.transform = "translateY(-4px)";
                     e.currentTarget.style.boxShadow =
-                      "0 6px 20px rgba(0,0,0,0.12)";
+                      "0 8px 25px rgba(0,0,0,0.12)";
                   }}
                   onMouseLeave={(e) => {
                     e.currentTarget.style.transform = "translateY(0)";
                     e.currentTarget.style.boxShadow =
-                      "0 2px 8px rgba(0,0,0,0.08)";
+                      "0 2px 12px rgba(0,0,0,0.08)";
                   }}
                   onClick={() => (window.location.href = `/gafete/${p.id}`)}
                 >
                   <div
-                    className="position-absolute top-0 end-0 m-2 badge bg-light text-dark"
-                    style={{ fontSize: "0.7rem" }}
+                    className="position-absolute top-0 end-0 m-2 badge"
+                    style={{
+                      fontSize: "0.7rem",
+                      background: "rgba(102, 126, 234, 0.1)",
+                      color: "#667eea",
+                    }}
                   >
                     ID: {p.id.toString()}
                   </div>
@@ -98,12 +116,12 @@ export default function Participantes() {
                       <img
                         src={p.avatar}
                         alt={p.nombre}
-                        className="rounded-circle border border-3"
+                        className="rounded-circle border border-3 shadow-sm"
                         style={{
-                          width: "90px",
-                          height: "90px",
+                          width: "80px",
+                          height: "80px",
                           objectFit: "cover",
-                          borderColor: "#e3f2fd !important",
+                          borderColor: "rgba(102, 126, 234, 0.3) !important",
                         }}
                       />
                     </div>
@@ -138,8 +156,20 @@ export default function Participantes() {
                     </div>
 
                     <button
-                      className="btn btn-outline-primary btn-sm w-100"
-                      style={{ borderRadius: "20px" }}
+                      className="btn btn-sm w-100 py-2 border-0"
+                      style={{
+                        borderRadius: "8px",
+                        background: "rgba(102, 126, 234, 0.1)",
+                        color: "#667eea",
+                        fontSize: "0.8rem",
+                        transition: "all 0.3s ease",
+                      }}
+                      onMouseEnter={(e) => {
+                        e.target.style.background = "rgba(102, 126, 234, 0.2)";
+                      }}
+                      onMouseLeave={(e) => {
+                        e.target.style.background = "rgba(102, 126, 234, 0.1)";
+                      }}
                       onClick={(e) => {
                         e.stopPropagation();
                         window.location.href = `/gafete/${p.id}`;
@@ -155,16 +185,17 @@ export default function Participantes() {
           ) : (
             <div className="col-12">
               <div
-                className="card border-0 text-center py-5 bg-white"
+                className="card border-0 text-center py-5"
                 style={{
                   borderRadius: "12px",
-                  boxShadow: "0 2px 8px rgba(0,0,0,0.08)",
+                  background: "white",
+                  boxShadow: "0 2px 12px rgba(0,0,0,0.08)",
                 }}
               >
                 <div className="text-muted mb-3">
                   <i
-                    className="bi bi-people"
-                    style={{ fontSize: "3.5rem", color: "#6c757d" }}
+                    className="bi bi-search"
+                    style={{ fontSize: "3rem", color: "#6c757d" }}
                   ></i>
                 </div>
                 <h5 className="text-dark mb-2">
@@ -177,14 +208,31 @@ export default function Participantes() {
                 </p>
                 {search ? (
                   <button
-                    className="btn btn-outline-secondary"
+                    className="btn py-2 px-3 border-0"
+                    style={{
+                      background: "rgba(102, 126, 234, 0.1)",
+                      color: "#667eea",
+                      borderRadius: "8px",
+                      fontSize: "0.9rem",
+                    }}
                     onClick={() => setSearchParams({})}
                   >
                     <i className="bi bi-arrow-counterclockwise me-2"></i>
                     Mostrar todos
                   </button>
                 ) : (
-                  <Link className="btn btn-primary" to="/registro">
+                  <Link
+                    className="btn py-2 px-3 fw-bold border-0 shadow"
+                    to="/registro"
+                    style={{
+                      background:
+                        "linear-gradient(135deg, #2c3e50 0%, #34495e 100%)",
+                      borderBottom: "3px solid rgba(255, 255, 255, 0.1)",
+                      color: "white",
+                      borderRadius: "8px",
+                      fontSize: "0.9rem",
+                    }}
+                  >
                     <i className="bi bi-person-plus me-2"></i>
                     Registrar primer participante
                   </Link>

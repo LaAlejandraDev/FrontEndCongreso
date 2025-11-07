@@ -37,7 +37,7 @@ export default function Layout() {
                 backgroundClip: "text",
               }}
             >
-              Congreso TIC
+              Congreso TIC's
             </NavLink>
           </div>
 
@@ -195,7 +195,7 @@ export default function Layout() {
       </div>
 
       <footer
-        className="text-center py-4 mt-5"
+        className="text-center py-4"
         style={{
           background: "linear-gradient(135deg, #2c3e50 0%, #34495e 100%)",
           borderTop: "3px solid rgba(255, 255, 255, 0.1)",
