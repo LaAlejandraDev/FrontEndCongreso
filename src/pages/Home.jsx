@@ -102,7 +102,7 @@ export default function Home() {
                 backgroundClip: "text",
               }}
             >
-              TIC
+              TIC's
             </h1>
 
             <h2 className="text-dark fs-3 fw-light mb-2 lh-sm">
