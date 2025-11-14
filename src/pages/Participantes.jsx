@@ -9,7 +9,7 @@ export default function Participantes() {
   const [lista, setLista] = useState([]);
 
   useEffect(() => {
-    fetch("http://localhost:3000/api/listado")
+    fetch("https://backendcongreso-2.onrender.com/api/listado")
       .then((res) => res.json())
       .then((data) => setLista(data));
   }, []);

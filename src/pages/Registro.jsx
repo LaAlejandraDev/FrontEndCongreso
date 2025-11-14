@@ -25,7 +25,7 @@ export default function Registro() {
     if (!form.terminos)
       return alert("Debes aceptar los términos y condiciones.");
 
-    fetch("http://localhost:3000/api/registro", {
+    fetch("https://backendcongreso-2.onrender.com/api/registro", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(form),

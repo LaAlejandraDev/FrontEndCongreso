@@ -6,7 +6,7 @@ export default function Gafete() {
   const [persona, setPersona] = useState(null);
 
   useEffect(() => {
-    fetch(`http://localhost:3000/api/participante/${id}`)
+    fetch(`https://backendcongreso-2.onrender.com/api/participante/${id}`)
       .then((res) => res.json())
       .then((data) => setPersona(data));
   }, [id]);
